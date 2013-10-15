@@ -1,0 +1,45 @@
+{
+  "name": "grunt-json2sass",
+  "description": "Generate SASS vars file out of a JSON",
+  "version": "0.1.0",
+  "homepage": "https://github.com/renancouto/grunt-json2sass",
+  "author": {
+    "name": "Renan Couto",
+    "email": "renancouto@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/renancouto/grunt-json2sass.git"
+  },
+  "bugs": {
+    "url": "https://github.com/renancouto/grunt-json2sass/issues"
+  },
+  "licenses": [
+    {
+      "type": "GPL-2.0",
+      "url": "https://github.com/renancouto/grunt-json2sass/blob/master/LICENSE"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin",
+    "sass",
+    "json",
+    "node"
+  ]
+}
