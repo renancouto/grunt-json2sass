@@ -1,73 +1,55 @@
+/*jslint node:true*/
+
 /*
  * grunt-json2sass
  * https://github.com/renan/grunt-json2sass
  *
  * Copyright (c) 2013 Renan Couto
- * Licensed under the MIT license.
+ * Licensed under the GNU GENERAL PUBLIC LICENSE Version 2.
+ * https://github.com/renancouto/grunt-json2sass/blob/master/LICENSE
  */
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
-      ],
-      options: {
-        jshintrc: '.jshintrc',
-      },
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp'],
-    },
-
-    // Configuration to be run (and then tested).
-    json2sass: {
-      default_options: {
-        options: {
+    grunt.initConfig({
+        jslint: {
+            all: [
+                'Gruntfile.js',
+                'tasks/*.js',
+                '<%= nodeunit.tests %>'
+            ]
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
+
+        clean: {
+            tests: ['tmp']
         },
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
+
+        json2sass: {
+            shallow: {
+                files: {
+                    'tmp/shallow.sass': 'test/fixtures/shallow.json'
+                }
+            },
+            deep: {
+                files: {
+                    'tmp/deep.sass': 'test/fixtures/deep.json'
+                }
+            }
         },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-    },
 
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+        nodeunit: {
+            tests: ['test/*_test.js']
+        }
+    });
 
-  });
+    grunt.loadTasks('tasks');
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
+    grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'json2sass', 'nodeunit']);
-
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
-
+    grunt.registerTask('test', ['clean', 'json2sass', 'nodeunit']);
+    grunt.registerTask('default', ['jslint', 'test']);
 };
